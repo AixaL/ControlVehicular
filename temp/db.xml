@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<licencias><conductores><conductor><RFC>43</RFC><nombre>Tres</nombre><fechaNacimiento>2003/03/03</fechaNacimiento><firma/><domicilio>Tres</domicilio><antiguedad>3</antiguedad><sexo>hombre</sexo><tipoSangre>O</tipoSangre><restricciones/><telEmergencia>3333333</telEmergencia></conductor><conductor><RFC/><nombre/><fechaNacimiento/><firma/><domicilio/><antiguedad/><sexo/><tipoSangre/><restricciones/><telEmergencia/></conductor></conductores></licencias>
