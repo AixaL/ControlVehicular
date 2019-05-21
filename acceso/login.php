@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form1" name="form1" method="post" action="#">
+        <input type="text" name="username" id="username">
+        <input type="password" name="password" id="password">
+        <input type="submit" value="Entrar">
+    </form>
+</body>
+</html>
+
 <?php 
 
 session_start();
@@ -22,7 +39,7 @@ if($_POST['username'] != null && $_POST['password'] != null){
 			print("El usuario ingresado no existe.");
 		} else {
 			if($password == $fila[1]){
-					print("Bem vindo " . $fila[2]);
+					print("Bem vindo " . $fila[0]);
 
 					$_SESSION['username'] = $username;
 

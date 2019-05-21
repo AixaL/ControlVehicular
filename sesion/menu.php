@@ -1,12 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Control Vehicular</title>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Control Vehicular</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -61,65 +64,6 @@
     </ul>
   </div>
 </nav>
-<form id="form1" name="form1" method="post" action="#">
-
-  <p>
-    <label>Criterio:
-    <input name="criterio" type="text" id="criterio" required/>
-    </label>
-  </p>
-  <p>
-    <label>
-    <input type="submit" name="submit" value="Enviar" />
-    </label>
-  </p>
-</form>
+    
 </body>
 </html>
-
-
-
-<?php
-
-	if(isset($_POST['submit'])){
-
-    $criterio = $_POST['criterio'];
-    $seleccion = $_POST['seleccion'];
-		include("../conexion.php");
-		$con = conectar();
-		$sql = "SELECT * FROM verificaciones WHERE $seleccion LIKE BINARY '$criterio';";
-		$query = ejecutarConsulta($con, $sql);
-
-		$status = mysqli_affected_rows($con);
-	    if($status == -1){
-		    echo("Consulta fallida \n");
-    	} else if($status == 0) {
-	    	echo ("Sin resultados \n");
-    	} else if($status > 0){
-				echo($status . " resultados encontrados </br>");
-                
-?>
-    <table>
-<?php
-  while($fila = mysqli_fetch_row($query)){
-?>
-
-      <tr>  
-        <td><?=$fila[0]?></td>
-        <td><?=$fila[1]?></td>
-        <td><?=$fila[2]?></td>
-        <td><?=$fila[3]?></td>
-        <td><?=$fila[4]?></td>
-      </tr>
-<?php
-  }
-?>
-    </table>
-<?php
-		
-        }
-		cerrar($con);
-	}
-
-
-?>
