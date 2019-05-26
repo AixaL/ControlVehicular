@@ -83,17 +83,17 @@
   </label>
   <p>
     <label>Propietario
-    <input name="propietario" type="text" id="propietario" />
+    <input name="propietario" type="text" id="propietario" required />
     </label>
   </p>
   <p>
     <label>NIV
-    <input name="NIV" type="text" id="NIV" />
+    <input name="NIV" type="text" id="NIV" required/>
     </label>
   </p>
   <p>
     <label>Placa
-    <input name="placa" type="text" id="placa" />
+    <input name="placa" type="text" id="placa" required/>
     </label>
   </p>
   <p>
@@ -142,7 +142,7 @@
     </label>
   </p>
   <p>
-    <label>A�o
+    <label>Año
     <input name="anio" type="date" id="anio" />
     </label>
   </p>
@@ -172,12 +172,5 @@
     </label>
 </p>
 </form>
-
-  <script>
-    $(document).ready(function () {
-      $(".dropdown-trigger").dropdown();
-    })
-  </script>
-
 </body>
 </html>

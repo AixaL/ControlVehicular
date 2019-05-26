@@ -19,6 +19,15 @@
 </head>
 
 <body>
+  <style>
+    form{
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+    }
+  </style>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">CV</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -77,11 +86,11 @@
   </div>
 <form id="form1" name="form1" method="post" action="./Pconductor.php">
   <label>RFC
-  <input name="RFC" type="text" id="RFC" />
+  <input name="RFC" type="text" id="RFC" required />
   </label>
   <p>
     <label>Nombre
-    <input name="nombre" type="text" id="nombre" />
+    <input name="nombre" type="text" id="nombre" req/>
     </label>
   </p>
   <p>
