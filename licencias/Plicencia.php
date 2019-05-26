@@ -22,7 +22,7 @@
 		$folio = mysqli_insert_id($con);
 		$config = parse_ini_file("../configuracion.ini");
 		$xml = simplexml_load_file($config['temp']);
-
+		/*
 		if($xml === FALSE){
 
 			//No existe el archivo de base de datos aún.
@@ -69,7 +69,7 @@
 			$licencia->addChild('estadoEmision', $estadoEmision);
 	
 			echo $xml->asXML('../db.xml');
-		}
+		}*/
 		// FIN: Generación de XML
 		// INICIO: Generación de QR
 		require "../phpqrcode/qrlib.php";
@@ -93,7 +93,7 @@
 
 		//Creación de la licencia
 
-		require('fpdf/fpdf.php');
+		require('../fpdf/fpdf.php');
 		$pdf = new FPDF();
 		$pdf->AddPage();
 		//PARTE DELANTERA
