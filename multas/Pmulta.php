@@ -172,8 +172,8 @@
 		$pdf->Image($filepath,160,100,0,0,'PNG');
 
 
-		$pdf->Output();
-		//$pdf->Output('F', 'multa'.$folio.'.pdf');
+		
+		$pdf->Output('F', 'multa'.$folio.'.pdf');
 		echo("Consulta ejecutada \n");
 	} else {
 		echo ("Consulta fallida \n");
