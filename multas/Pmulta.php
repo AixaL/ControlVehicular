@@ -74,6 +74,7 @@
          </li>
        </ul>
      </div>
+		 	<button class="btn btn-outline-primary my-2 my-lg-0" type="submit" style="margin-left: 600px"><a href="../acceso/logout.php">Cerrar Sesión</a></button>
    </nav>
 <div class="titulo" style="text-align:center; margin-top:20px">
     <h1>Alta de multa</h1>

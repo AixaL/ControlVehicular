@@ -68,6 +68,8 @@
           </div>
         </li>
       </ul>
+			<!-- <button type="button" class="btn btn-primary" style="float:right">Cerrar Sesión</button> -->
+			<button class="btn btn-outline-primary my-2 my-lg-0" type="submit" style="margin-left: 600px"><a href="../acceso/logout.php">Cerrar Sesión</a></button>
     </div>
   </nav>
 <div class="titulo" style="text-align:center; margin-top:20px">

@@ -85,6 +85,10 @@ session_start();
     			<label for="pass">Password</label>
     			<input type="password" class="form-control" id="password" name="password" placeholder="Password" require>
   			</div>
+  			<div class="form-group">
+    			<label for="key">Key</label>
+    			<input type="file" class="form-control" id="key" name="key" placeholder="key" require>
+  			</div>
   			<button type="submit" class="btn btn-primary">Entrar</button>
 		</form>
 	</div>

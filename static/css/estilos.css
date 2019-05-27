@@ -116,3 +116,9 @@ nav{
     padding: 5px;
     box-sizing: border-box;
 }
+@media (min-width: 992px){
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 0 !important;
+        padding-left: .5rem;
+    }
+} 
