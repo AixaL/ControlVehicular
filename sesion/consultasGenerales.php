@@ -1,6 +1,7 @@
 <?php
 
-include("conexion.php");
+// include("conexion.php");
+include("../conexion.php");
 $con = conectar();
 
 if($_POST['table'] != null && $_POST['conditional'] != null && $_POST['param'] != null){

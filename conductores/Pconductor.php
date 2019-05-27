@@ -18,7 +18,7 @@
 </head>
 <body class="body_AC" >
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">CV</a>
+    <a class="navbar-brand" href="../sesion/consultasGenerales.php">CV</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -26,13 +26,13 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item ">
-          <a class="nav-link" href="../licencias/Flicencia.html">Licencias <span class="sr-only">(current)</span></a>
+          <a class="nav-link active" href="../licencias/Plicencia.php">Licencias <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../multas/Fmulta.html">Multas</a>
+          <a class="nav-link" href="../multas/Pmulta.php">Multas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../verificaciones/Fverificacion.html">Verificaciones</a>
+          <a class="nav-link" href="../verificaciones/Pverificacion.php">Verificaciones</a>
         </li>
         <li class="nav-item dropdown ">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
@@ -40,20 +40,20 @@
             Vehiculos
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="../vehiculos/Fvehiculo.html">Altas</a>
-            <a class="dropdown-item" href="../vehiculos/FEvehiculos.html">Bajas</a>
-            <a class="dropdown-item" href="../vehiculos/Uvehiculo.html">Modificaciones</a>
+            <a class="dropdown-item" href="../vehiculos/Pvehiculo.php">Altas</a>
+            <a class="dropdown-item" href="../vehiculos/FEvehiculos.php">Bajas</a>
+            <a class="dropdown-item" href="../vehiculos/Uvehiculo.php">Modificaciones</a>
           </div>
         </li>
-        <li class="nav-item dropdown active">
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             Conductores
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="../conductores/Pconductor.php">Altas</a>
-            <a class="dropdown-item" href="../conductores/Feconductor.php">Bajas</a>
-            <a class="dropdown-item" href="../conductores/Uconductor.php">Modificaciones</a>
+           <a class="dropdown-item" href="../conductores/Pconductor.php">Altas</a>
+           <a class="dropdown-item" href="../conductores/Feconductor.php">Bajas</a>
+           <a class="dropdown-item" href="../conductores/Uconductor.php">Modificaciones</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -62,9 +62,9 @@
             Propietarios
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="../propietarios/FPropietario.html">Altas</a>
-            <a class="dropdown-item" href="../propietarios/FEpropietario.html">Bajas</a>
-            <a class="dropdown-item" href="../propietarios/Upropietario.html">Modificaciones</a>
+            <a class="dropdown-item" href="../propietarios/Ppropietario.php">Altas</a>
+            <a class="dropdown-item" href="../propietarios/FEpropietario.php">Bajas</a>
+            <a class="dropdown-item" href="../propietarios/Upropietario.php">Modificaciones</a>
           </div>
         </li>
       </ul>
@@ -250,9 +250,9 @@ if(isset($_POST['submit'] ) && $_SERVER["REQUEST_METHOD"] == "POST"){
 			echo $xml->asXML($config['temp']);
 		}
 
-		echo("Consulta ejecutada \n");
+		echo("<div class='alert alert-success' role='alert'>Conductor agregado</div>");
 	} else {
-		echo ("Consulta fallida \n");
+		echo ("<div class='alert alert-success' role='alert'>Error: no se pudó agregar</div>");
 	}
 		
 	cerrar($con);

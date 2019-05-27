@@ -1,8 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Control Vehicular</title>
+<link rel="stylesheet" href="../static/css/estilos.css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+</script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+</head>
+<body class="body_AL">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">CV</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item ">
+          <a class="nav-link active" href="../licencias/Plicencia.php">Licencias <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../multas/Pmulta.php">Multas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../verificaciones/Pverificacion.php">Verificaciones</a>
+        </li>
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Vehiculos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="../vehiculos/Pvehiculo.php">Altas</a>
+            <a class="dropdown-item" href="../vehiculos/FEvehiculos.php">Bajas</a>
+            <a class="dropdown-item" href="../vehiculos/Uvehiculo.php">Modificaciones</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Conductores
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+           <a class="dropdown-item" href="../conductores/Pconductor.php">Altas</a>
+           <a class="dropdown-item" href="../conductores/Feconductor.php">Bajas</a>
+           <a class="dropdown-item" href="../conductores/Uconductor.php">Modificaciones</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Propietarios
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="../propietarios/Ppropietario.php">Altas</a>
+            <a class="dropdown-item" href="../propietarios/FEpropietario.php">Bajas</a>
+            <a class="dropdown-item" href="../propietarios/Upropietario.php">Modificaciones</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="titulo" style="text-align:center; margin-top:20px">
+    <h1>Alta de Licencia</h1>
+  </div>
+  <div class="form_AC AL">
 <?php 
 	// AUTENTIFICACIÓN
 	include('../acceso/auth.php');
-
-	// $folio = 1;
+	if(isset($_POST['submit'])){
+			// $folio = 1;
 	$conductor = $_POST['conductor'];
 	$tipoLicencia = $_POST['tipoLicencia'];
 	$fechaEmision = $_POST['fechaEmision'];
@@ -144,12 +224,59 @@
 		$pdf->Output('F', 'licencia'.$folio.'.pdf');
 		//FIN: Creación de PDF
 
-		echo("Consulta ejecutada </br>");
+		echo("<div class='alert alert-success' role='alert'>Licencia agregada</div>");
 	} else {
-		echo ("Consulta fallida </br>");
+		echo ("<div class='alert alert-danger' role='alert'>Error: no se pudó agregar</div>");
 	}
-	
-
 	cerrar($con);
 
+	}
+	
 ?>
+	<form id="form1" name="form1" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+	<div class="input-group mb-3">
+  	<div class="input-group-prepend">
+    	<span class="input-group-text" id="basic-addon1">Folio</span>
+  	</div>
+  	<input type="text" name="folio" id="folio" class="form-control" placeholder="" aria-label="folio" aria-describedby="basic-addon1" disabled>
+	</div>
+	<div class="input-group mb-3">
+  	<div class="input-group-prepend">
+    	<span class="input-group-text" id="basic-addon1">Conductor</span>
+  	</div>
+  	<input type="text" name="conductor" id="conductor" class="form-control" placeholder="" aria-label="conductor" aria-describedby="basic-addon1" required>
+	</div>
+	<div class="input-group mb-3">
+  	<div class="input-group-prepend">
+    	<span class="input-group-text" id="basic-addon1">Tipo de licencia</span>
+  	</div>
+  	<input type="text" name="tipoLicencia" id="tipoLicencia" class="form-control" placeholder="" aria-label="tipoLicencia" aria-describedby="basic-addon1" >
+	</div>
+	<div class="input-group mb-3">
+  	<div class="input-group-prepend">
+    	<span class="input-group-text" id="basic-addon1">Fecha de emisión</span>
+  	</div>
+  	<input type="date" name="fechaEmision" id="fechaEmision" class="form-control" placeholder="" aria-label="fechaEmision" aria-describedby="basic-addon1" required>
+	</div>
+	<div class="input-group mb-3">
+  	<div class="input-group-prepend">
+    	<span class="input-group-text" id="basic-addon1">Fecha de vencimiento</span>
+  	</div>
+  	<input type="date" name="fechaVencimiento" id="fechaVencimiento" class="form-control" placeholder="" aria-label="fechaVencimiento" aria-describedby="basic-addon1" required>
+	</div>
+	<div class="input-group mb-3">
+  	<div class="input-group-prepend">
+    	<span class="input-group-text" id="basic-addon1">Estado de emisión</span>
+  	</div>
+  	<input type="text" name="estadoEmision" id="estadoEmision" class="form-control" placeholder="" aria-label="estadoEmision" aria-describedby="basic-addon1" required>
+	</div>
+	<p>
+    <label>
+    <input type="submit" name="Submit" value="Agregar" class="btn_form" />
+    </label>
+	</p>
+</form>
+</div>
+</body>
+</html>
+

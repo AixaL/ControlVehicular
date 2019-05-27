@@ -47,7 +47,7 @@ session_start();
 
 					$_SESSION['username'] = $username;
 
-					header("location:../sesion/menu.php");
+					header("location:../sesion/consultasGenerales.php");
 
 			} else {
 				print("<div class='alert alert-danger' role='alert'>Contraseña equivocada</div>");

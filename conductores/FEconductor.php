@@ -22,60 +22,59 @@
 
 </head>
 <body class="body_BC">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">CV</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item ">
-                    <a class="nav-link" href="../licencias/Flicencia.html">Licencias <span
-                            class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../multas/Fmulta.html">Multas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../verificaciones/Fverificacion.html">Verificaciones</a>
-                </li>
-                <li class="nav-item dropdown ">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Vehiculos
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="../vehiculos/Fvehiculo.html">Altas</a>
-                        <a class="dropdown-item" href="../vehiculos/FEvehiculos.html">Bajas</a>
-                        <a class="dropdown-item" href="../vehiculos/Uvehiculo.html">Modificaciones</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Conductores
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="../conductores/Fconductor.html">Altas</a>
-                        <a class="dropdown-item" href="../conductores/Feconductor.html">Bajas</a>
-                        <a class="dropdown-item" href="../conductores/Uconductor.html">Modificaciones</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown ">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Propietarios
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="../propietarios/FPropietario.html">Altas</a>
-                        <a class="dropdown-item" href="../propietarios/FEpropietario.html">Bajas</a>
-                        <a class="dropdown-item" href="../propietarios/Upropietario.html">Modificaciones</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">CV</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item ">
+          <a class="nav-link active" href="../licencias/Plicencia.php">Licencias <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../multas/Pmulta.php">Multas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../verificaciones/Pverificacion.php">Verificaciones</a>
+        </li>
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Vehiculos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="../vehiculos/Pvehiculo.php">Altas</a>
+            <a class="dropdown-item" href="../vehiculos/FEvehiculos.php">Bajas</a>
+            <a class="dropdown-item" href="../vehiculos/Uvehiculo.php">Modificaciones</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Conductores
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+           <a class="dropdown-item" href="../conductores/Pconductor.php">Altas</a>
+           <a class="dropdown-item" href="../conductores/Feconductor.php">Bajas</a>
+           <a class="dropdown-item" href="../conductores/Uconductor.php">Modificaciones</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Propietarios
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="../propietarios/Ppropietario.php">Altas</a>
+            <a class="dropdown-item" href="../propietarios/FEpropietario.php">Bajas</a>
+            <a class="dropdown-item" href="../propietarios/Upropietario.php">Modificaciones</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
     <div class="titulo" style="text-align:center; margin-top:20px">
     <h1>Baja de Conductor</h1>
   </div>
@@ -89,21 +88,10 @@
     </div>
      <p>
     <label>
-    <input type="submit" name="Submit" value="Agregar" class="btn_form" />
+    <input type="submit" name="Submit" value="Aceptar" class="btn_form" />
     </label>
 </p>
 </form>
-</body>
-
-</html>
-<!-- <html>
-    <form action="#" method="POST" name="form1">
-        <label>RFC Conductor</label>
-        <input type="text" placeholder="RFC" name="key"></input>
-        <input type="Submit" name="eliminar"></input>
-    </form>
-</html> -->
-
 <?php 
 
     // AUTENTIFICACIÓN
@@ -118,12 +106,24 @@
         ejecutarConsulta($con, $sql);
         $status = mysqli_affected_rows($con);
 	    if($status == -1){
-		    echo("Consulta fallida \n");
+		    echo("<div class='alert alert-danger' role='alert'>Falló la consulta</div>");
     	} else if($status == 0) {
-	    	echo ("Cero filas afectadas \n");
+	    	echo ("<div class='alert alert-danger' role='alert'>Ningun usuario eliminado</div>");
     	} else if($status > 0){
-            echo($status . " filas afectadas");
+            // echo($status . " filas afectadas");
+            echo("<div class='alert alert-succes' role='alert'>$status usuario eliminado</div>");
         }
         cerrar($con);
     }
 ?>
+</body>
+
+</html>
+<!-- <html>
+    <form action="#" method="POST" name="form1">
+        <label>RFC Conductor</label>
+        <input type="text" placeholder="RFC" name="key"></input>
+        <input type="Submit" name="eliminar"></input>
+    </form>
+</html> -->
+

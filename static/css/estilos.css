@@ -75,11 +75,20 @@ body,html{
     display: block;
     height: 100%;
 }
-.body_AC,.body_BC{
+.AL{
+    height: 70% !important;
+}
+.AP{
+    height: 60% !important;
+}
+.AV{
+    height: 170% !important;
+}
+.body_AC,.body_BC,.body_AL{
     /* background-image: url("../img/cars.jpg");
     background-repeat: no-repeat;
     background-size: 100% 150%; */
-    background: #F6F8FA;
+    background: #F6F8FA !important;
 }
 .btn_form{
     border-style: none;
