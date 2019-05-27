@@ -209,9 +209,9 @@
 
 		// FIN: Generación de QR
 
-		echo("Consulta ejecutada \n");
+		echo("<div class='alert alert-success' role='alert'>Vehiculo agregado</div>");
 	} else {
-		echo ("Consulta fallida \n");
+		echo ("<div class='alert alert-danger' role='alert'>Error: No se pudo agregar</div>");
 	}
 	cerrar($con);
 }

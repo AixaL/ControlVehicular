@@ -111,7 +111,7 @@
 	    	echo ("<div class='alert alert-danger' role='alert'>Ningun usuario eliminado</div>");
     	} else if($status > 0){
             // echo($status . " filas afectadas");
-            echo("<div class='alert alert-succes' role='alert'>$status usuario eliminado</div>");
+            echo("<div class='alert alert-success' role='alert'>$status usuario eliminado</div>");
         }
         cerrar($con);
     }

@@ -131,9 +131,9 @@
 			
 			echo $xml->asXML('../db.xml');
 			
-			echo("Consulta ejecutada \n");
+			echo("<div class='alert alert-success' role='alert'>Vehiculo modificado</div>");
 		} else {
-			echo ("Consulta fallida \n");
+			echo ("<div class='alert alert-danger' role='alert'>Error: No se pudo ejecutar</div>");
 		}
 		cerrar($con);
 		

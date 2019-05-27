@@ -112,44 +112,68 @@
 	</div>
   <p>
     <label>
-    <input type="submit" name="Submit" value="Aceptar" class="btn_form" />
+    <input type="submit" name="submit" value="Aceptar" class="btn_form" />
     </label>
 </p>
 </form>
-<?php
+</div>
+<div class="table-responsive">
+  <table class="table">
+  <thead class="thead-dark">
+  <?php
 
 // include("conexion.php");
 include("../conexion.php");
 $con = conectar();
 if(isset($_POST['submit'])){
-    if($_POST['table'] != null && $_POST['conditional'] != null && $_POST['param'] != null){
+  if($_POST['table'] != null && $_POST['conditional'] != null && $_POST['param'] != null){
     $table = $_POST['table'];
+    // echo($table);
     $conditional = $_POST['conditional'];
+    // echo($conditional);
     $param = $_POST['param'];
+    // echo($param);
     $sql = "SELECT * FROM $table WHERE $conditional = $param";
 } else if($_POST['table']) {
     $table = $_POST['table'];
     $sql = "SELECT * FROM $table";
 } else {
-    echo("No params were sent");
+    echo("<div class='alert alert-danger' role='alert'>No fueron enviados parametros</div>");
 }
 
 $query = ejecutarConsulta($con, $sql);
 
 $status = mysqli_affected_rows($con);
 if($status == -1){
-    echo("Consulta fallida \n");
+    echo("<div class='alert alert-danger' role='alert'>No se pudo relizar la consulta</div>");
 } else if($status == 0) {
-    echo ("Sin resultados \n");
+    echo ("<div class='alert alert-dark' role='alert'>No se encontraron resultados</div>");
 } else if($status > 0){
     echo($status . " resultados encontrados </br>");
     $results = [];
-    while($fila = mysqli_fetch_row($query)){
-
-        array_push($results,$fila);
-        
+    print(" <tr>");
+    while($fila = mysqli_fetch_assoc($query)){
+        // $tama= sizeof($fila);
+        // print_r($fila);
+        // echo($tama);
+      foreach ($fila as $key => $value) {
+        array_push($results,$value);
+        // print($key);
+        print("<th scope='col'>$key</th>");
+      }
     }
-    print_r($results);
+    print("</tr></thead>");
+    print("<tbody>");
+    print("<tr>");
+    foreach ($results as $key => $value) {
+      // print($value);
+      print("<td>$value</td>");
+    }
+    print("</tr></tbody>");
+    // print_r($results);
+    // $tama= sizeof($results);
+    // echo($tama);
+    // print_r($results);
 }
 
 
@@ -159,6 +183,7 @@ cerrar($con);
 
 
 ?>
+</table>
 </div>
 </body>
 </html>

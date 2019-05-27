@@ -94,7 +94,7 @@
 	$query = ejecutarConsulta($con, $sql);
 	$status = mysqli_affected_rows($con);
 	if($status != -1){
-		echo("<div class='alert alert-succes' role='alert'>Usuario modificado</div>");
+		echo("<div class='alert alert-success' role='alert'>Usuario modificado</div>");
 	} else {
 		echo ("<div class='alert alert-danger' role='alert'>Falló la consulta</div>");
 	}

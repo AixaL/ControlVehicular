@@ -87,6 +87,7 @@
 	$tipoLicencia = $_POST['tipoLicencia'];
 	$fechaEmision = $_POST['fechaEmision'];
 	$fechaVencimiento = $_POST['fechaVencimiento'];
+	echo($fechaVencimiento);
 	$estadoEmision = $_POST['estadoEmision'];
 
 	include("../conexion.php");
@@ -259,11 +260,15 @@
   	<input type="date" name="fechaEmision" id="fechaEmision" class="form-control" placeholder="" aria-label="fechaEmision" aria-describedby="basic-addon1" required>
 	</div>
 	<div class="input-group mb-3">
-  	<div class="input-group-prepend">
-    	<span class="input-group-text" id="basic-addon1">Fecha de vencimiento</span>
-  	</div>
-  	<input type="date" name="fechaVencimiento" id="fechaVencimiento" class="form-control" placeholder="" aria-label="fechaVencimiento" aria-describedby="basic-addon1" required>
-	</div>
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="fechaVencimiento">Fecha de vencimiento</label>
+  </div>
+  <select class="custom-select" id="fechaVencimiento" name="fechaVencimiento">
+    <option selected>Fecha de vencimiento</option>
+    <option value="1" id="tres">3 años</option>
+    <option value="2" id="cinco">5 años</option>
+  </select>
+</div>
 	<div class="input-group mb-3">
   	<div class="input-group-prepend">
     	<span class="input-group-text" id="basic-addon1">Estado de emisión</span>
@@ -272,11 +277,45 @@
 	</div>
 	<p>
     <label>
-    <input type="submit" name="Submit" value="Agregar" class="btn_form" />
+    <input type="submit" name="submit" value="Agregar" class="btn_form" />
     </label>
 	</p>
 </form>
 </div>
+<script>
+window.onload = function(){
+  var fecha = new Date(); //Fecha actual
+  var fecha2 = new Date(); //Fecha actual
+  var fecha3 = new Date(); //Fecha actual
+	// var fecha2.setFullYear(fecha2.getFullYear()+3);
+	// var fecha3.setFullYear(fecha3.getFullYear()+5);
+  var mes = fecha.getMonth()+1; //obteniendo mes
+  var dia = fecha.getDate(); //obteniendo dia
+  var ano = fecha.getFullYear(); //obteniendo año
+  var ano1 = fecha.getFullYear()+3; //obteniendo año
+  var ano2 = fecha.getFullYear()+5; //obteniendo año
+  if(dia<10)
+    dia='0'+dia; //agrega cero si el menor de 10
+  if(mes<10)
+    mes='0'+mes //agrega cero si el menor de 10
+  document.getElementById('fechaEmision').value=ano+"-"+mes+"-"+dia;
+
+  document.getElementById('tres').value=ano1+"-"+mes+"-"+dia;
+  document.getElementById('cinco').value=ano2+"-"+mes+"-"+dia;
+var fec1=dia+"/"+mes+"/"+ano1;
+var fec2=dia+"/"+mes+"/"+ano2;
+// var fec2=ano2+"-"+mes+"-"+dia;
+
+  document.getElementById('tres').innerHTML=fec1;
+  document.getElementById('cinco').innerHTML=fec2;
+
+
+	console.log(fecha2.getFullYear()+3);
+	console.log(fecha2.getFullYear()+5);
+	console.log(fecha3);
+}
+
+</script>
 </body>
 </html>
 

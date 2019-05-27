@@ -107,3 +107,12 @@ nav{
     height: 50px;
     background: rebeccapurple !important;
 }
+.tabla{
+    width: 70%;
+    position: relative;
+    float: left;
+    /* margin-left: 15%; */
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+}
