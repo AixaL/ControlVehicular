@@ -23,7 +23,7 @@
 		<?php 
 
 
-if($_POST['username'] != null && $_POST['password'] != null){
+if(isset($_POST['username']) && isset($_POST['password'])){
 
 session_start();
 	$username = $_POST['username'];
