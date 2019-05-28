@@ -256,7 +256,7 @@
 
 
 		
-		$pdf->Output('F', 'multa'.$folio.'.pdf');
+		$pdf->Output('../temp/'.'multa'.$folio.'.pdf','F');
 		echo("<div class='alert alert-success' role='alert'>Multa agregada</div>");
 	} else {
 		echo ("<div class='alert alert-danger' role='alert'>Error: no se pudó agregar</div>");

@@ -223,7 +223,7 @@
 		//Datos
 		$pdf->SetXY(120,20);
 		$pdf->MultiCell(50,3,"Domicilio \n $fila2[4] \n Grupo Sanguineo \n $fila2[8] \n Numero de Emergencias \n $fila2[6] \n Restricciones \n $fila2[9] ",0,'R');
-		$pdf->Output('F', 'licencia'.$folio.'.pdf');
+		$pdf->Output('../temp/'. 'licencia'.$folio.'.pdf','F');
 		//FIN: Creación de PDF
 
 		echo("<div class='alert alert-success' role='alert'>Licencia agregada</div>");
