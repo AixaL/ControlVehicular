@@ -1,3 +1,6 @@
+<?php
+	include('../acceso/auth.php');
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -156,7 +159,7 @@
 	</div>
   <p>
     <label>
-    <input type="submit" name="Submit" value="Agregar" class="btn_form" />
+    <input type="submit" name="submit" value="Agregar" class="btn_form" />
     </label>
 </p>
 </form>
@@ -166,8 +169,7 @@
 
 
 <?php 
-	// AUTENTIFICACIÓN
-	include('../acceso/auth.php');
+
 if(isset($_POST['submit'] ) && $_SERVER["REQUEST_METHOD"] == "POST"){
 	$RFC = $_POST['RFC'];
 	$nombre = $_POST['nombre'];
@@ -184,14 +186,14 @@ if(isset($_POST['submit'] ) && $_SERVER["REQUEST_METHOD"] == "POST"){
 	$con = conectar();
 
 	$sql = "INSERT INTO conductores VALUES ('$RFC', '$nombre', '$fechaNacimiento', '$firma', '$domicilio', '$antiguedad', '$telEmergencia', '$sexo', '$tipoSangre', '$restricciones');";
-
 	$query = ejecutarConsulta($con, $sql);
-	$status = mysqli_affected_rows($con);
-	if($status != -1){
+
+	if($query){
 
 		$config = parse_ini_file("../configuracion.ini");
+		@ $xml = simplexml_load_file($config['temp'] . 'db.xml');
 
-		if(!$xml = simplexml_load_file($config['temp'])){
+		if($xml === FALSE){
 
 			//No existe el archivo de base de datos aún.
 
@@ -211,10 +213,10 @@ if(isset($_POST['submit'] ) && $_SERVER["REQUEST_METHOD"] == "POST"){
 			$conductor->addChild('restricciones', $restricciones);
 			$conductor->addChild('telEmergencia', $telEmergencia);
 
-			echo $xml->asXML($config['temp']);
+			echo $xml->asXML($config['temp'] . 'db.xml');
 
 		
-		} else if( $xml->conductores != null ){
+		} else if( $xml->conductores ){
 
 			//Existe el archivo xml y también la sección de conductores.
 
@@ -231,7 +233,7 @@ if(isset($_POST['submit'] ) && $_SERVER["REQUEST_METHOD"] == "POST"){
 			$conductor->addChild('restricciones', $restricciones);
 			$conductor->addChild('telEmergencia', $telEmergencia);
 
-			echo $xml->asXML($config['temp']);
+			echo $xml->asXML($config['temp'] . 'db.xml');
 		} else {
 
 		
@@ -249,9 +251,8 @@ if(isset($_POST['submit'] ) && $_SERVER["REQUEST_METHOD"] == "POST"){
 			$conductor->addChild('restricciones', $restricciones);
 			$conductor->addChild('telEmergencia', $telEmergencia);
 
-			echo $xml->asXML($config['temp']);
+			echo $xml->asXML($config['temp'] . 'db.xml');
 		}
-
 		echo("<div class='alert alert-success' role='alert'>Conductor agregado</div>");
 	} else {
 		echo ("<div class='alert alert-success' role='alert'>Error: no se pudó agregar</div>");
@@ -267,23 +268,3 @@ if(isset($_POST['submit'] ) && $_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 </body>
 </html>
-
-
-
-<!-- 
-	//Sí existe el archivo xml pero no existe la sección de conductores.
-
-
-	// print('RFC: ' . $RFC . '</br>');
-	// print('Nombre: ' . $nombre . '</br>');
-	// print('fechaNacimiento: ' . $fechaNacimiento . '</br>');
-	// print('Firma: ' . $firma . '</br>');
-	// print('Domicilio: ' . $domicilio . '</br>');
-	// print('Antiguedad: ' . $antiguedad . '</br>');
-	// print('Sexo: ' . $sexo . '</br>');
-	// print('Tipo de sangre: ' . $tipoSangre . '</br>');
-	// print('Restricciones: ' . $restricciones . '</br>');
-	// print('Telefono: ' . $telEmergencia . '</br>'); -->
-
-	
-

@@ -7,7 +7,7 @@ session_start();
 
 if(!$_SESSION['username']){
     // Reemplazar con el login
-    header("location:login.php");
+    header("location:../acceso/login.php");
 }
 
 ?>

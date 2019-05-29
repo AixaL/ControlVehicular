@@ -1,3 +1,6 @@
+<?php
+	include('../acceso/auth.php');
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -77,12 +80,10 @@
     </div>
     <div class="form_BC ">
 <?php 
-    // AUTENTIFICACIÓN
-	include('../acceso/auth.php');
 
     if(isset($_POST['key'])){
         $key = $_POST['key'];
-        echo($key);
+        // echo($key);
 
         include("../conexion.php");
         $con = conectar();
@@ -91,8 +92,8 @@
         ejecutarConsulta($con, $sql);
         
         $status = mysqli_affected_rows($con);
-        $error = mysqli_error($con);
-        echo($error);
+        // $error = mysqli_error($con);
+        // echo($error);
 
 	    if($status == -1){
             //Consulta fallida, ocurrió un error.
@@ -103,7 +104,7 @@
     	} else if($status > 0){
             //Consulta exitosa, registro encontrado.
             $config = parse_ini_file("../configuracion.ini");
-            $xml = simplexml_load_file($config['temp']);
+            @ $xml = simplexml_load_file($config['temp'] . 'db.xml');
             
             $vehiculos = $xml->vehiculos;
             foreach ($vehiculos->vehiculo as $vehiculo) {
@@ -114,7 +115,7 @@
                 }
             }
     
-            echo $xml->asXML('../db.xml');
+            echo $xml->asXML($config['temp'] . 'db.xml');
             echo("<div class='alert alert-success' role='alert'>Vehiculo eliminado</div>");
         }
         cerrar($con);

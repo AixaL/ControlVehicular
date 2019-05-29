@@ -1,3 +1,6 @@
+<?php
+	include('../acceso/auth.php');
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -77,8 +80,6 @@
   </div>
   <div class="form_AC AP">
 <?php 
-	// AUTENTIFICACIÓN
-	include('../acceso/auth.php');
 
 	if(isset($_POST['submit'])){
 	$RFC = $_POST['RFC'];
@@ -114,7 +115,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">RFC</span>
         </div>
-        <input type="text" name="RFC" id="RFC" class="form-control" placeholder="" aria-label="RFC" aria-describedby="basic-addon1" disabled>
+        <input type="text" name="RFC" id="RFC" class="form-control" placeholder="" aria-label="RFC" aria-describedby="basic-addon1" required>
       </div>
       <div class="input-group mb-3">
         <div class="input-group-prepend">

@@ -1,3 +1,6 @@
+<?php
+	include('../acceso/auth.php');
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -82,8 +85,7 @@
 <div class="form_AC">
 
 <?php 
-	// AUTENTIFICACIÓN
-	include('../acceso/auth.php');
+
 	if(isset($_POST['submit'])){
 		// $folio = $_POST['folio'];
 	$idVerificacion = $_POST['idVerificacion'];
@@ -98,7 +100,8 @@
 
 	include("../conexion.php");
 	$con = conectar();
-    $sql = "INSERT INTO multas VALUES ('', '$idVerificacion', '$idVehiculo', '$licencia', '$motivo', '$emisor', '$fecha', '$monto', '$descripcion', '$garantia');";
+	
+	$sql = "INSERT INTO multas VALUES ('', '$idVerificacion', '$idVehiculo', '$licencia', '$motivo', '$emisor', '$fecha', '$monto', '$descripcion', '$garantia');";
 	$query = ejecutarConsulta($con, $sql);
 
 
@@ -106,8 +109,8 @@
 	if($query){
 		$folio = mysqli_insert_id($con);
 		$config = parse_ini_file("../configuracion.ini");
-		$xml = simplexml_load_file($config['temp']);
-/*
+		@ $xml = simplexml_load_file($config['temp'] . 'db.xml');
+
 		if($xml === FALSE){
 
 			//No existe el archivo de base de datos aún.
@@ -117,6 +120,7 @@
 			$multas = $xml->addChild('multas');
 	
 			$multa = $multas->addChild('multa');
+			$multa->addChild('folio', $folio);
 			$multa->addChild('idVerificacion', $idVerificacion);
 			$multa->addChild('idVehiculo', $idVehiculo);
 			$multa->addChild('licencia', $licencia);
@@ -128,14 +132,15 @@
 			$multa->addChild('garantia', $garantia);
 	
 	
-			echo $xml->asXML('../db.xml');
+			echo $xml->asXML($config['temp'] . 'db.xml');
 	
 		
-		} else if( $xml->multas != null ){
+		} else if( $xml->multas ){
 	
 			//Existe el archivo xml y también la sección de multas.
 	
 			$multa = $xml->multas->addchild('multa');
+			$multa->addChild('folio', $folio);
 			$multa->addChild('idVerificacion', $idVerificacion);
 			$multa->addChild('idVehiculo', $idVehiculo);
 			$multa->addChild('licencia', $licencia);
@@ -146,7 +151,7 @@
 			$multa->addChild('descripcion', $descripcion);
 			$multa->addChild('garantia', $garantia);		
 	
-			echo $xml->asXML('../db.xml');
+			echo $xml->asXML($config['temp'] . 'db.xml');
 		} else {
 	
 			//Sí existe el archivo xml pero no existe la sección de multas.
@@ -154,6 +159,7 @@
 			$multas = $xml->addChild('multas');
 	
 			$multa = $multas->addChild('multa');
+			$multa->addChild('folio', $folio);
 			$multa->addChild('idVerificacion', $idVerificacion);
 			$multa->addChild('idVehiculo', $idVehiculo);
 			$multa->addChild('licencia', $licencia);
@@ -164,8 +170,8 @@
 			$multa->addChild('descripcion', $descripcion);
 			$multa->addChild('garantia', $garantia);
 	
-			echo $xml->asXML('../db.xml');
-		}*/
+			echo $xml->asXML($config['temp'] . 'db.xml');
+		}
 
 		require('../barcode.php');
 		$filepath="barras". $folio .".png";

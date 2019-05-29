@@ -1,3 +1,6 @@
+<?php
+	include('../acceso/auth.php');
+?>
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -83,8 +86,6 @@
 
 <?php 
 
-	// AUTENTIFICACIÓN
-	include('../acceso/auth.php');
 	if(isset($_POST['submit'])){
 		// $idVehiculo = "";
 	$propietario = $_POST['propietario'];
@@ -113,8 +114,8 @@
 	if($query){
 		$idVehiculo = mysqli_insert_id($con);
 		$config = parse_ini_file("../configuracion.ini");
-		$xml = simplexml_load_file($config['temp']);
-		/*
+		$xml = simplexml_load_file($config['temp'] . 'db.xml');
+
 		if($xml === FALSE){
 
 			//No existe el archivo de base de datos aún.
@@ -143,7 +144,7 @@
 			$vehiculo->addChild('linea', $linea);
 			$vehiculo->addChild('origen', $origen);
 			
-			echo $xml->asXML('../db.xml');
+			echo $xml->asXML($config['temp'] . 'db.xml');
 	
 		
 		} else if( $xml->vehiculos ){
@@ -170,7 +171,7 @@
 			$vehiculo->addChild('linea', $linea);
 			$vehiculo->addChild('origen', $origen);
 	
-			echo $xml->asXML('../db.xml');
+			echo $xml->asXML($config['temp'] . 'db.xml');
 		} else {
 	
 			//Sí existe el archivo xml pero no existe la sección de vehiculos.
@@ -197,8 +198,8 @@
 			$vehiculo->addChild('linea', $linea);
 			$vehiculo->addChild('origen', $origen);
 			
-			echo $xml->asXML('../db.xml');
-		}*/
+			echo $xml->asXML($config['temp'] . 'db.xml');
+		}
 
 		// INICIO: Generación de QR
 		require "../phpqrcode/qrlib.php";
@@ -414,32 +415,12 @@
 
 		$pdf->Output('../temp/' . $pdfname, 'F');
 		ob_end_flush();
-		echo("Consulta ejecutada \n");
+		echo("<div class='alert alert-success' role='alert'>Vehículo Agregado</div>");
 	} else {
 		echo ("<div class='alert alert-danger' role='alert'>Error: No se pudo agregar</div>");
 	}
 	cerrar($con);
 }
-
-	
-	// print('Id: ' . $idVehiculo . '</br>');
-	// print('Propietario: ' . $propietario . '</br>');
-	// print('Numero de identificacion vehicular: ' . $NIV . '</br>');
-	// print('Placa: ' . $placa . '</br>');
-	// print('Tipo de vehiculo: ' . $tipo . '</br>');
-	// print('Color: ' . $color . '</br>');
-	// print('Uso: ' . $uso . '</br>');
-	// print('Numero de puertas: ' . $numeroPuertas . '</br>');
-	// print('Marca: ' . $marca . '</br>');
-	// print('Numero de motor: ' . $numeroMotor . '</br>');
-	// print('Numero de serie: ' . $numeroSerie . '</br>');
-	// print('Modelo: ' . $modelo . '</br>');
-	// print('Combustible: ' . $combustible . '</br>');
-	// print('A�o: ' . $anio . '</br>');
-	// print('Cilindros: ' . $cilindros . '</br>');
-	// print('Transmision: ' . $transmision . '</br>');
-	// print('Linea: ' . $linea . '</br>');
-	// print('Origen: ' . $origen . '</br>');
 
 
 ?>

@@ -1,3 +1,7 @@
+<?php
+	include('../acceso/auth.php');
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -80,9 +84,8 @@
   </div>
   <div class="form_AC AL">
 <?php 
-	// AUTENTIFICACIÓN
-	include('../acceso/auth.php');
-	if(isset($_POST['submit'])){
+
+if(isset($_POST['submit'])){
 			// $folio = 1;
 	$conductor = $_POST['conductor'];
 	$tipoLicencia = $_POST['tipoLicencia'];
@@ -103,8 +106,8 @@
 		// INICIO: Generación de XML
 		$folio = mysqli_insert_id($con);
 		$config = parse_ini_file("../configuracion.ini");
-		$xml = simplexml_load_file($config['temp']);
-		/*
+		@ $xml = simplexml_load_file($config['temp'] . 'db.xml');
+		
 		if($xml === FALSE){
 
 			//No existe el archivo de base de datos aún.
@@ -120,10 +123,10 @@
 			$licencia->addChild('fechaVencimiento', $fechaVencimiento);
 			$licencia->addChild('estadoEmision', $estadoEmision);
 	
-			echo $xml->asXML('../db.xml');
+			echo $xml->asXML($config['temp'] . 'db.xml');
 	
 		
-		} else if( $xml->licencias != null ){
+		} else if( $xml->licencias ){
 	
 			//Existe el archivo xml y también la sección de licencias.
 	
@@ -137,7 +140,7 @@
 	
 	
 	
-			echo $xml->asXML('../db.xml');
+			echo $xml->asXML($config['temp'] . 'db.xml');
 		} else {
 	
 			//Sí existe el archivo xml pero no existe la sección de licencias.
@@ -150,13 +153,13 @@
 			$licencia->addChild('fechaVencimiento', $fechaVencimiento);
 			$licencia->addChild('estadoEmision', $estadoEmision);
 	
-			echo $xml->asXML('../db.xml');
-		}*/
+			echo $xml->asXML($config['temp'] . 'db.xml');
+		}
 		// FIN: Generación de XML
 		// INICIO: Generación de QR
 		require "../phpqrcode/qrlib.php";
 
-		$qrData = "Folio: $folio Conductor: $conductor Vigencia: $fechaVencimientos";
+		$qrData = "Folio: $folio Conductor: $conductor Vigencia: $fechaVencimiento";
 		$filename = "licencia" . $folio . ".png";
 
 		QRCode::png($qrData, $filename, "L");
@@ -232,7 +235,7 @@
 	}
 	cerrar($con);
 
-	}
+}
 	
 ?>
 	<form id="form1" name="form1" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">

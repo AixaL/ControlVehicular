@@ -1,3 +1,6 @@
+<?php
+	include('../acceso/auth.php');
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -78,8 +81,7 @@
     </div>
     <div class="form_AC">
 		<?php 
-// AUTENTIFICACIÓN
-	include('../acceso/auth.php');
+
 	if(isset($_POST['submit'])){
 		$idVehiculo = $_POST['idVehiculo'];
 		$propietario = $_POST['propietario'];
@@ -110,11 +112,11 @@
 		if($query){
 			
 			$config = parse_ini_file("../configuracion.ini");
-			$xml = simplexml_load_file($config['temp']);
+			@ $xml = simplexml_load_file($config['temp'] . 'db.xml');
 			
 			$vehiculos = $xml->vehiculos;
 			foreach ($vehiculos->vehiculo as $vehiculo) {
-				if($vehiculo->idVehiculo == $key){
+				if($vehiculo->idVehiculo == $idVehiculo){
 					$vehiculo->propietario = $propietario;
 					$vehiculo->placa = $placa;
 					// $vehiculo->tipo = $tipo;
@@ -130,7 +132,7 @@
 				}
 			}
 			
-			echo $xml->asXML('../db.xml');
+			echo $xml->asXML($config['temp'] . 'db.xml');
 			
 			echo("<div class='alert alert-success' role='alert'>Vehiculo modificado</div>");
 		} else {

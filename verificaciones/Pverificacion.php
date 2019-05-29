@@ -1,3 +1,6 @@
+<?php
+	include('../acceso/auth.php');
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -76,10 +79,10 @@
     </div>
     <div class="form_AC AL">
 <?php 
-	// AUTENTIFICACIÓN
-	include('../acceso/auth.php');
-	if(isset($_POST['submit'])){
-				// $idVerificacion = $_POST['idVerificacion'];
+
+if(isset($_POST['submit'])){
+	
+	// $idVerificacion = $_POST['idVerificacion'];
 	$vehiculo = $_POST['vehiculo'];
 	$periodo = $_POST['periodo'];
 	$tipo = $_POST['tipo'];
@@ -94,7 +97,8 @@
 	$query = ejecutarConsulta($con, $sql);
 	if($query){
 		$idVerificacion = mysqli_insert_id($con);
-		$xml = simplexml_load_file('../db.xml');
+		$config = parse_ini_file("../configuracion.ini");
+		@ $xml = simplexml_load_file($config['temp'] . 'db.xml');
 
 		if($xml === FALSE){
 
@@ -112,7 +116,7 @@
 			$verificacion->addChild('centroVerificador', $centroVerificador);
 			$verificacion->addChild('dictamen', $dictamen);
 	
-			echo $xml->asXML('../db.xml');
+			echo $xml->asXML($config['temp'] . 'db.xml');
 	
 		
 		} else if( $xml->verificaciones ){
@@ -127,7 +131,7 @@
 			$verificacion->addChild('centroVerificador', $centroVerificador);
 			$verificacion->addChild('dictamen', $dictamen);	
 	
-			echo $xml->asXML('../db.xml');
+			echo $xml->asXML($config['temp'] . 'db.xml');
 		} else {
 	
 			//Sí existe el archivo xml pero no existe la sección de verificaciones.
@@ -142,7 +146,7 @@
 			$verificacion->addChild('centroVerificador', $centroVerificador);
 			$verificacion->addChild('dictamen', $dictamen);
 			
-			echo $xml->asXML('../db.xml');
+			echo $xml->asXML($config['temp'] . 'db.xml');
 		}
 
 		//CREACION QR
@@ -277,14 +281,14 @@
 		ob_end_flush();
 	
 		
-		echo("Consulta ejecutada \n");
+		echo("<div class='alert alert-success' role='alert'>Verificación agregada</div>");
 	} else {
 		echo ("<div class='alert alert-danger' role='alert'>Error: no se pudo ejecutar</div>");
 	}
 	cerrar($con);
 
 
-	}
+}
 
 ?>
       <form id="form1" name="form1" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">

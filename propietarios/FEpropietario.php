@@ -1,3 +1,7 @@
+<?php 
+    // AUTENTIFICACIÓN
+    include('../acceso/auth.php');
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -77,12 +81,10 @@
   </div>
   <div class="form_BC">
 <?php 
-    // AUTENTIFICACIÓN
-    include('../acceso/auth.php');
 
-    if(isset($_POST['key'])){
-        $key = $_POST['key'];
-        print($key);
+    if(isset($_POST['RFC'])){
+        $key = $_POST['RFC'];
+        // print($key);
         include("../conexion.php");
         $con = conectar();
         $sql = "DELETE FROM propietarios WHERE RFC = '$key';";
