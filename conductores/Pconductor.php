@@ -213,7 +213,7 @@ if(isset($_POST['submit'] ) && $_SERVER["REQUEST_METHOD"] == "POST"){
 			$conductor->addChild('restricciones', $restricciones);
 			$conductor->addChild('telEmergencia', $telEmergencia);
 
-			echo $xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp'] . 'db.xml');
 
 		
 		} else if( $xml->conductores ){
@@ -233,7 +233,7 @@ if(isset($_POST['submit'] ) && $_SERVER["REQUEST_METHOD"] == "POST"){
 			$conductor->addChild('restricciones', $restricciones);
 			$conductor->addChild('telEmergencia', $telEmergencia);
 
-			echo $xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp'] . 'db.xml');
 		} else {
 
 		
@@ -251,7 +251,7 @@ if(isset($_POST['submit'] ) && $_SERVER["REQUEST_METHOD"] == "POST"){
 			$conductor->addChild('restricciones', $restricciones);
 			$conductor->addChild('telEmergencia', $telEmergencia);
 
-			echo $xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp'] . 'db.xml');
 		}
 		echo("<div class='alert alert-success' role='alert'>Conductor agregado</div>");
 	} else {
