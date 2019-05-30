@@ -91,7 +91,7 @@ if(isset($_POST['submit'])){
 	$tipoLicencia = $_POST['tipoLicencia'];
 	$fechaEmision = $_POST['fechaEmision'];
 	$fechaVencimiento = $_POST['fechaVencimiento'];
-	echo($fechaVencimiento);
+	// echo($fechaVencimiento);
 	$estadoEmision = $_POST['estadoEmision'];
 
 	include("../conexion.php");
@@ -123,7 +123,7 @@ if(isset($_POST['submit'])){
 			$licencia->addChild('fechaVencimiento', $fechaVencimiento);
 			$licencia->addChild('estadoEmision', $estadoEmision);
 	
-			echo $xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp'] . 'db.xml');
 	
 		
 		} else if( $xml->licencias ){
@@ -140,7 +140,7 @@ if(isset($_POST['submit'])){
 	
 	
 	
-			echo $xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp'] . 'db.xml');
 		} else {
 	
 			//Sí existe el archivo xml pero no existe la sección de licencias.
@@ -153,7 +153,7 @@ if(isset($_POST['submit'])){
 			$licencia->addChild('fechaVencimiento', $fechaVencimiento);
 			$licencia->addChild('estadoEmision', $estadoEmision);
 	
-			echo $xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp'] . 'db.xml');
 		}
 		// FIN: Generación de XML
 		// INICIO: Generación de QR

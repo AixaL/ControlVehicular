@@ -116,7 +116,7 @@ if(isset($_POST['submit'])){
 			$verificacion->addChild('centroVerificador', $centroVerificador);
 			$verificacion->addChild('dictamen', $dictamen);
 	
-			echo $xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp'] . 'db.xml');
 	
 		
 		} else if( $xml->verificaciones ){
@@ -131,7 +131,7 @@ if(isset($_POST['submit'])){
 			$verificacion->addChild('centroVerificador', $centroVerificador);
 			$verificacion->addChild('dictamen', $dictamen);	
 	
-			echo $xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp'] . 'db.xml');
 		} else {
 	
 			//Sí existe el archivo xml pero no existe la sección de verificaciones.
@@ -146,7 +146,7 @@ if(isset($_POST['submit'])){
 			$verificacion->addChild('centroVerificador', $centroVerificador);
 			$verificacion->addChild('dictamen', $dictamen);
 			
-			echo $xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp'] . 'db.xml');
 		}
 
 		//CREACION QR

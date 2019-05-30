@@ -132,7 +132,7 @@
 				}
 			}
 			
-			echo $xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp'] . 'db.xml');
 			
 			echo("<div class='alert alert-success' role='alert'>Vehiculo modificado</div>");
 		} else {

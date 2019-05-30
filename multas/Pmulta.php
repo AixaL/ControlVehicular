@@ -132,7 +132,7 @@
 			$multa->addChild('garantia', $garantia);
 	
 	
-			echo $xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp'] . 'db.xml');
 	
 		
 		} else if( $xml->multas ){
@@ -151,7 +151,7 @@
 			$multa->addChild('descripcion', $descripcion);
 			$multa->addChild('garantia', $garantia);		
 	
-			echo $xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp'] . 'db.xml');
 		} else {
 	
 			//Sí existe el archivo xml pero no existe la sección de multas.
@@ -170,7 +170,7 @@
 			$multa->addChild('descripcion', $descripcion);
 			$multa->addChild('garantia', $garantia);
 	
-			echo $xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp'] . 'db.xml');
 		}
 
 		require('../barcode.php');
