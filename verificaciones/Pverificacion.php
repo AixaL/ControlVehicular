@@ -277,7 +277,7 @@ if(isset($_POST['submit'])){
 		$pdf->Cell(50,6,$tipo,0,0,'L');
 		$pdf->SetXY(45,103);
 		$pdf->Cell(50,6,$dictamen,0,0,'L');
-		$pdf->Output('../temp/'.$pdfname, 'F');
+		$pdf->Output($config['temp'].$pdfname, 'F');
 		ob_end_flush();
 	
 		
