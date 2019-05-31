@@ -80,6 +80,16 @@
     </div>
     <div class="form_BC ">
 <?php 
+ $parametros = parse_ini_file("../credenciales.ini");
+
+//------------DB ORIGINAL------------
+	$dsnControl = $parametros['dsn'];
+	$userControl =$parametros['user'];
+	$passControl=$parametros['password'];
+//----------DB RESPALDO--------
+	$dsnRControl = $parametros['dsn2'];
+	$userRControl =$parametros['user2'];
+	$passRControl=$parametros['password2'];
 
     if(isset($_POST['key'])){
         $key = $_POST['key'];
@@ -89,6 +99,12 @@
         $con = conectar();
 
         $sql = "DELETE FROM vehiculos WHERE idVehiculo = '$key';";
+        $conexionControl= odbc_connect($dsnControl,$userControl,$passControl);
+	    $conexionRControl= odbc_connect($dsnRControl,$userRControl,$passRControl);
+
+	    // $query=odbc_exec($conexionControl,$sql);
+	    odbc_exec($conexionRControl,$sql);
+
         ejecutarConsulta($con, $sql);
         
         $status = mysqli_affected_rows($con);

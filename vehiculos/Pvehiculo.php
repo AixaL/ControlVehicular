@@ -85,6 +85,16 @@
 <div class="form_AC AV ">
 
 <?php 
+ $parametros = parse_ini_file("../credenciales.ini");
+
+//------------DB ORIGINAL------------
+	$dsnControl = $parametros['dsn'];
+	$userControl =$parametros['user'];
+	$passControl=$parametros['password'];
+//----------DB RESPALDO--------
+	$dsnRControl = $parametros['dsn2'];
+	$userRControl =$parametros['user2'];
+	$passRControl=$parametros['password2'];
 
 	if(isset($_POST['submit'])){
 		// $idVehiculo = "";
@@ -109,7 +119,13 @@
 	include("../conexion.php");
 	$con = conectar();
 	$sql = "INSERT INTO vehiculos(Propietario, NIV, Placa, Tipo, Color, Uso, numPuerta, Marca, numMotor, numSerie, Modelo, Combustible, Anio, Cilindraje, Transmision, Linea, Origen) VALUES ('$propietario', '$placa', '$NIV', '$tipo', '$color', '$uso', '$numeroPuertas', '$marca', '$numeroMotor', '$numeroSerie', '$modelo', '$combustible', '$anio', '$cilindros', '$transmision', '$linea', '$origen');";
-	$query = ejecutarConsulta($con, $sql);
+	
+	$conexionControl= odbc_connect($dsnControl,$userControl,$passControl);
+	$conexionRControl= odbc_connect($dsnRControl,$userRControl,$passRControl);
+
+	$query=odbc_exec($conexionControl,$sql);
+	odbc_exec($conexionRControl,$sql);
+	// $query = ejecutarConsulta($con, $sql);
 
 	if($query){
 		$idVehiculo = mysqli_insert_id($con);

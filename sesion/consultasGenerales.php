@@ -6,6 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta charset="utf-8">
 <title>Control Vehicular</title>
 <link rel="stylesheet" href="../static/css/estilos.css">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -147,7 +148,7 @@ if(isset($_POST['submit'])){
 }
 
 $query = ejecutarConsulta($con, $sql);
-
+$i=0;
 $status = mysqli_affected_rows($con);
 if($status == -1){
     echo("<div class='alert alert-danger' role='alert'>No se pudo relizar la consulta</div>");
@@ -159,7 +160,8 @@ if($status == -1){
     print(" <tr>");
     while($fila = mysqli_fetch_assoc($query)){
         // $tama= sizeof($fila);
-        // print_r($fila);
+        $i=$i+1;
+        print_r($fila);
         // echo($tama);
       foreach ($fila as $key => $value) {
         array_push($results,$value);
@@ -168,6 +170,7 @@ if($status == -1){
       }
     }
     print("</tr></thead>");
+   
     print("<tbody>");
     print("<tr>");
     foreach ($results as $key => $value) {

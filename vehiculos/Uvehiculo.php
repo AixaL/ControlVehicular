@@ -80,7 +80,18 @@
         <h1>Modificar Vehiculo</h1>
     </div>
     <div class="form_AC">
-		<?php 
+<?php 
+
+$parametros = parse_ini_file("../credenciales.ini");
+
+//------------DB ORIGINAL------------
+	$dsnControl = $parametros['dsn'];
+	$userControl =$parametros['user'];
+	$passControl=$parametros['password'];
+//----------DB RESPALDO--------
+	$dsnRControl = $parametros['dsn2'];
+	$userRControl =$parametros['user2'];
+	$passRControl=$parametros['password2'];
 
 	if(isset($_POST['submit'])){
 		$idVehiculo = $_POST['idVehiculo'];
@@ -100,15 +111,22 @@
 		$cilindros = $_POST['cilindros'];
 		$transmision = $_POST['transmision'];
 		// $linea = $_POST['linea'];
-		// $origen = $_POST['origen'];
+        // $origen = $_POST['origen'];
+        
 		
 		include("../conexion.php");
 		$con = conectar();
 		
 		$sql = "UPDATE vehiculos SET Propietario='$propietario',Placa='$placa',Color='$color',Uso='$uso',numMotor='$numeroMotor',Combustible='$combustible',Cilindraje='$cilindros',Transmision='$transmision' WHERE idVehiculo='$idVehiculo';";
 		// $sql = "UPDATE vehiculos SET Propietario='$propietario',NIV='$NIV',Placa='$placa',Tipo='$tipo',Color='$color',Uso='$uso',numPuerta='$numeroPuertas',Marca='$marca',numMotor='$numeroMotor',numSerie='$numeroSerie',Modelo='$modelo',Combustible='$combustible',Anio='$anio',Cilindraje='$cilindros',Transmision='$transmision',Linea='$linea',Origen='$origen' WHERE idVehiculo='$idVehiculo';";
-		
-		$query = ejecutarConsulta($con, $sql);
+        
+        $conexionControl= odbc_connect($dsnControl,$userControl,$passControl);
+	    $conexionRControl= odbc_connect($dsnRControl,$userRControl,$passRControl);
+
+	    $query=odbc_exec($conexionControl,$sql);
+	            odbc_exec($conexionRControl,$sql);
+
+		// $query = ejecutarConsulta($con, $sql);
 		if($query){
 			
 			$config = parse_ini_file("../configuracion.ini");
