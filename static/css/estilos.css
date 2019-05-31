@@ -37,6 +37,9 @@ body,html{
     padding: 20%;
     padding-top: 10%;
 }
+.AC{
+    height: 126% !important;
+}
 .form_AC{
     width: 50%;
     margin-top: 20px;

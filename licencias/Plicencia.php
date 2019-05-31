@@ -279,6 +279,12 @@ if(isset($_POST['submit'])){
   	</div>
   	<input type="text" name="estadoEmision" id="estadoEmision" class="form-control" placeholder="" aria-label="estadoEmision" aria-describedby="basic-addon1" required>
 	</div>
+	<!-- <div class="input-group mb-3">
+  	<div class="input-group-prepend">
+    	<span class="input-group-text" id="basic-addon1">Foto</span>
+  	</div>
+  	<input type="file" name="foto" id="foto" class="form-control" placeholder="" aria-label="foto" aria-describedby="basic-addon1" required>
+	</div> -->
 	<p>
     <label>
     <input type="submit" name="submit" value="Agregar" class="btn_form" />

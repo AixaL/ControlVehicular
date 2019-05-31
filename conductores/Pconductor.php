@@ -78,8 +78,8 @@
 <div class="titulo" style="text-align:center; margin-top:20px">
     <h1>Alta de Conductor</h1>
   </div>
-  <div class="form_AC">
-	<form id="form1" name="form1" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+  <div class="form_AC AC">
+	<form id="form1" name="form1" method="post" action="#" enctype="multipart/form-data">
 	<div class="input-group mb-3">
   	<div class="input-group-prepend">
     	<span class="input-group-text" id="basic-addon1">RFC</span>
@@ -97,12 +97,6 @@
     	<span class="input-group-text" id="basic-addon1">Fecha de nacimiento</span>
   	</div>
   	<input type="date" name="fechaNacimiento" class="form-control" id="fechaNacimiento" aria-label="nombre" aria-describedby="basic-addon1" required>
-	</div>
-	<div class="input-group mb-3">
-  	<div class="input-group-prepend">
-    	<span class="input-group-text" id="basic-addon1">Firma</span>
-  	</div>
-  	<input type="text" name="firma" class="form-control" id="firma" aria-label="firma" aria-describedby="basic-addon1" disabled>
 	</div>
 	<div class="input-group mb-3">
   	<div class="input-group-prepend">
@@ -156,6 +150,18 @@
     	<span class="input-group-text" id="basic-addon1">Telefono de emergencia</span>
   	</div>
   	<input type="text" name="telEmergencia" class="form-control" id="telEmergencia" aria-label="telEmergencia" aria-describedby="basic-addon1">
+	</div>
+  	<div class="input-group mb-3">
+  	<div class="input-group-prepend">
+    	<span class="input-group-text" id="basic-addon1">Firma</span>
+  	</div>
+  	<input type="file" name="firma" class="form-control" id="firma" aria-label="firma" aria-describedby="basic-addon1">
+	</div>
+  	<div class="input-group mb-3">
+  	<div class="input-group-prepend">
+    	<span class="input-group-text" id="basic-addon1">Foto</span>
+  	</div>
+  	<input type="file" name="foto" class="form-control" id="foto" aria-label="foto" aria-describedby="basic-addon1">
 	</div>
   <p>
     <label>
