@@ -28,6 +28,15 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 session_start();
 	$username = $_POST['username'];
 	$password = $_POST['password'];
+	$llave = $_FILES['key'];
+	$directorio = $llave['tmp_name'];
+	if($directorio){
+		$key = "";
+		$manejador = fopen($directorio, "r");
+		$string = fgets($manejador);
+	} else {
+		$string = "";
+	}
 
 	include('../conexion.php');
 
@@ -38,11 +47,11 @@ session_start();
 	$n = mysqli_num_rows($result);
 
 	$fila = mysqli_fetch_row($result);
-	if($fila[3] != 0){
+	if($fila[4] == 0){
 		if($n == 0){
 			print("<div class='alert alert-danger' role='alert'>El usuario ingresado no existe</div>");
 		} else {
-			if($password == $fila[1]){
+			if($password == $fila[1] && $string == $fila[2]){
 					print("Bem vindo " . $fila[0]);
 
 					$_SESSION['username'] = $username;
@@ -76,7 +85,7 @@ session_start();
 
 	
 ?>
-		<form id="form1" name="form1" method="post" action="#">
+		<form id="form1" name="form1" method="post" action="#" enctype="multipart/form-data" >
   			<div class="form-group">
     			<label for="user">Usuario</label>
     			<input type="text" class="form-control" id="username" name="username"  placeholder="Ingresa tu usuario" require>
