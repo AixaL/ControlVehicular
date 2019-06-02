@@ -161,7 +161,7 @@
   	<div class="input-group-prepend">
     	<span class="input-group-text" id="basic-addon1">Foto</span>
   	</div>
-  	<input type="file" name="foto" class="form-control" id="foto" aria-label="foto" aria-describedby="basic-addon1">
+  	<input type="file" name="foto" class="form-control" id="foto" aria-label="foto" aria-describedby="basic-addon1" accept="image/*">
 	</div>
   <p>
     <label>
@@ -187,6 +187,21 @@ if(isset($_POST['submit'] ) && $_SERVER["REQUEST_METHOD"] == "POST"){
 	$tipoSangre = $_POST['tipoSangre'];
 	$restricciones = $_POST['restricciones'];
 	$telEmergencia = $_POST['telEmergencia'];
+
+  if($_FILES["foto"]["error"]>0){
+    echo "Error al cargar archivo";
+  } else {
+    $archivo = 'fotos/'.$_FILES["foto"]["name"];
+    $resultado = @move_uploaded_file($_FILES["foto"]["tmp_name"], $archivo);
+  }
+
+  if($_FILES["firma"]["error"]>0){
+    echo "Error al cargar archivo";
+  } else {
+    $ruta = '../firmas/';
+    $archivo = $ruta.$_FILES["firma"]["name"];
+    $resultado = @move_uploaded_file($_FILES["firma"]["tmp_name"], $archivo);
+  }
 
 	include("../conexion.php");
 	$con = conectar();
