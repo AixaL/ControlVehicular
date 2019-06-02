@@ -191,15 +191,14 @@ if(isset($_POST['submit'] ) && $_SERVER["REQUEST_METHOD"] == "POST"){
   if($_FILES["foto"]["error"]>0){
     echo "Error al cargar archivo";
   } else {
-    $archivo = 'fotos/'.$_FILES["foto"]["name"];
+    $archivo = '../fotos/'.$_FILES["foto"]["name"];
     $resultado = @move_uploaded_file($_FILES["foto"]["tmp_name"], $archivo);
   }
 
   if($_FILES["firma"]["error"]>0){
     echo "Error al cargar archivo";
   } else {
-    $ruta = '../firmas/';
-    $archivo = $ruta.$_FILES["firma"]["name"];
+    $archivo = '../firmas/'.$_FILES["firma"]["name"];
     $resultado = @move_uploaded_file($_FILES["firma"]["tmp_name"], $archivo);
   }
 
