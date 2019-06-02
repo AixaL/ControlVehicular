@@ -221,7 +221,7 @@
 		require "../phpqrcode/qrlib.php";
 
 		$qrData = "Id: $idVehiculo Propietario: $propietario NIV: $NIV";
-		$filename = "vehiculo" . $idVehiculo . ".png";
+		$filename = $config['temp']."QRvehiculo" . $idVehiculo . ".png";
 
 		QRCode::png($qrData, $filename, "L");
 
@@ -234,7 +234,7 @@
 		$sql = "Select * from propietarios WHERE RFC = '$propietario';";
 		$Query = EjecutarConsulta($con, $sql);
 		$fila = mysqli_fetch_row($Query);
-		$pdfname = "vehiculo". $placa . ".pdf";
+		$pdfname = "vehiculo". $idVehiculo . ".pdf";
 		ob_start();
 		$pdf = new FPDF();
 		$pdf -> AddPage();
@@ -429,7 +429,7 @@
 		$pdf->Cell(22,6,$placa,0,0,'L');
 
 
-		$pdf->Output('../temp/' . $pdfname, 'F');
+		$pdf->Output($config['temp'] . $pdfname, 'F');
 		ob_end_flush();
 		echo("<div class='alert alert-success' role='alert'>Vehículo Agregado</div>");
 	} else {
