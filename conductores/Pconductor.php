@@ -155,13 +155,13 @@
   	<div class="input-group-prepend">
     	<span class="input-group-text" id="basic-addon1">Firma</span>
   	</div>
-  	<input type="file" name="firma" class="form-control" id="firma" aria-label="firma" aria-describedby="basic-addon1">
+  	<input type="file" name="firma" class="form-control" id="firma" aria-label="firma" aria-describedby="basic-addon1" accept="image/jpg">
 	</div>
   	<div class="input-group mb-3">
   	<div class="input-group-prepend">
     	<span class="input-group-text" id="basic-addon1">Foto</span>
   	</div>
-  	<input type="file" name="foto" class="form-control" id="foto" aria-label="foto" aria-describedby="basic-addon1" accept="image/*">
+  	<input type="file" name="foto" class="form-control" id="foto" aria-label="foto" aria-describedby="basic-addon1" accept="image/jpg">
 	</div>
   <p>
     <label>
@@ -188,25 +188,27 @@ if(isset($_POST['submit'] ) && $_SERVER["REQUEST_METHOD"] == "POST"){
 	$restricciones = $_POST['restricciones'];
 	$telEmergencia = $_POST['telEmergencia'];
 
+	include("../conexion.php");
+	$con = conectar();
+
+	$sql = "INSERT INTO conductores VALUES ('$RFC', '$nombre', '$fechaNacimiento', '$firma', '$domicilio', '$antiguedad', '$telEmergencia', '$sexo', '$tipoSangre', '$restricciones');";
+	$query = ejecutarConsulta($con, $sql);
+
+  $folio = mysqli_insert_id($con);
   if($_FILES["foto"]["error"]>0){
     echo "Error al cargar archivo";
   } else {
-    $archivo = '../fotos/'.$_FILES["foto"]["name"];
+    $archivo = '../fotos/'.$folio.'.jpg';
     $resultado = @move_uploaded_file($_FILES["foto"]["tmp_name"], $archivo);
   }
 
   if($_FILES["firma"]["error"]>0){
     echo "Error al cargar archivo";
   } else {
-    $archivo = '../firmas/'.$_FILES["firma"]["name"];
+    $archivo = '../firmas/'.$folio.'.jpg';
     $resultado = @move_uploaded_file($_FILES["firma"]["tmp_name"], $archivo);
   }
 
-	include("../conexion.php");
-	$con = conectar();
-
-	$sql = "INSERT INTO conductores VALUES ('$RFC', '$nombre', '$fechaNacimiento', '$firma', '$domicilio', '$antiguedad', '$telEmergencia', '$sexo', '$tipoSangre', '$restricciones');";
-	$query = ejecutarConsulta($con, $sql);
 
 	if($query){
 
