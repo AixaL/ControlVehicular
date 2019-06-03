@@ -153,7 +153,7 @@ if(isset($_POST['submit'])){
 		require "../phpqrcode/qrlib.php";
 
 		$qrData = "Id verificacion: $idVerificacion Vehiculo: $vehiculo Periodo: $periodo Tipo: $tipo Centro: $centroVerificador Dictamen: $dictamen";
-		$filename = "verificacion" . $idVerificacion . ".png";
+		$filename = $config['temp']."QRverificacion" . $idVerificacion . ".png";
 
 		QRCode::png($qrData, $filename, "L");
 
