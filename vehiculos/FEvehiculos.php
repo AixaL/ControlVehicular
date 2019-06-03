@@ -120,6 +120,7 @@
     	} else if($status > 0){
             //Consulta exitosa, registro encontrado.
             $config = parse_ini_file("../configuracion.ini");
+        
             @ $xml = simplexml_load_file($config['temp'] . 'db.xml');
             
             $vehiculos = $xml->vehiculos;
@@ -130,8 +131,7 @@
                     break;
                 }
             }
-    
-            $xml->asXML($config['temp'] . 'db.xml');
+            $xml->asXML($config['temp']. 'db.xml');
             echo("<div class='alert alert-success' role='alert'>Vehiculo eliminado</div>");
         }
         cerrar($con);

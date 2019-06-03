@@ -119,7 +119,7 @@
 	include("../conexion.php");
 	$con = conectar();
 	$sql = "INSERT INTO vehiculos(Propietario, NIV, Placa, Tipo, Color, Uso, numPuerta, Marca, numMotor, numSerie, Modelo, Combustible, Anio, Cilindraje, Transmision, Linea, Origen) VALUES ('$propietario', '$placa', '$NIV', '$tipo', '$color', '$uso', '$numeroPuertas', '$marca', '$numeroMotor', '$numeroSerie', '$modelo', '$combustible', '$anio', '$cilindros', '$transmision', '$linea', '$origen');";
-	
+	$sql2 = "SELECT MAX(idVehiculo) from vehiculos";
 	$conexionControl= odbc_connect($dsnControl,$userControl,$passControl);
 	$conexionRControl= odbc_connect($dsnRControl,$userRControl,$passRControl);
 
@@ -127,8 +127,12 @@
 	odbc_exec($conexionRControl,$sql);
 	// $query = ejecutarConsulta($con, $sql);
 
-	if($query){
-		$idVehiculo = mysqli_insert_id($con);
+	$data=ejecutarConsulta($con, $sql2);
+	$dataVehiculo=mysqli_fetch_row($data);
+	$idVehiculo = $dataVehiculo[0];
+	
+	if(odbc_num_rows($query)>0){
+		// $idVehiculo = mysqli_insert_id($con);
 		$config = parse_ini_file("../configuracion.ini");
 		$xml = simplexml_load_file($config['temp'] . 'db.xml');
 
@@ -159,8 +163,7 @@
 			$vehiculo->addChild('transmision', $transmision);
 			$vehiculo->addChild('linea', $linea);
 			$vehiculo->addChild('origen', $origen);
-			
-			echo $xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp'] . 'db.xml');
 	
 		
 		} else if( $xml->vehiculos ){
@@ -187,7 +190,7 @@
 			$vehiculo->addChild('linea', $linea);
 			$vehiculo->addChild('origen', $origen);
 	
-			echo $xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp'] . 'db.xml');
 		} else {
 	
 			//Sí existe el archivo xml pero no existe la sección de vehiculos.
@@ -214,14 +217,14 @@
 			$vehiculo->addChild('linea', $linea);
 			$vehiculo->addChild('origen', $origen);
 			
-			echo $xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp'] . 'db.xml');
 		}
 
 		// INICIO: Generación de QR
 		require "../phpqrcode/qrlib.php";
 
 		$qrData = "Id: $idVehiculo Propietario: $propietario NIV: $NIV";
-		$filename = $config['temp']."QRvehiculo" . $idVehiculo . ".png";
+		$filename = $config['temp']."vehiculos/"."QRvehiculo" . $idVehiculo . ".png";
 
 		QRCode::png($qrData, $filename, "L");
 
@@ -428,8 +431,8 @@
 		$pdf->SetFont('Arial','',9);
 		$pdf->Cell(22,6,$placa,0,0,'L');
 
-
-		$pdf->Output($config['temp'] . $pdfname, 'F');
+		$ruta =$config['temp']."vehiculos/";
+		$pdf->Output($ruta . $pdfname, 'F');
 		ob_end_flush();
 		echo("<div class='alert alert-success' role='alert'>Vehículo Agregado</div>");
 	} else {

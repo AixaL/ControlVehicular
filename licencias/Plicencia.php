@@ -101,7 +101,7 @@ if(isset($_POST['submit'])){
 
 	$query = ejecutarConsulta($con, $sql);
 	$status = mysqli_affected_rows($con);
-	if($query){
+	if($status>0){
 
 		// INICIO: Generación de XML
 		$folio = mysqli_insert_id($con);
@@ -160,7 +160,7 @@ if(isset($_POST['submit'])){
 		require "../phpqrcode/qrlib.php";
 
 		$qrData = "Folio: $folio Conductor: $conductor Vigencia: $fechaVencimiento";
-		$filename = "licencia" . $folio . ".png";
+		$filename = $config['temp']."licencias/"."licencia" . $folio . ".png";
 
 		QRCode::png($qrData, $filename, "L");
 
@@ -226,7 +226,8 @@ if(isset($_POST['submit'])){
 		//Datos
 		$pdf->SetXY(120,20);
 		$pdf->MultiCell(50,3,"Domicilio \n $fila2[4] \n Grupo Sanguineo \n $fila2[8] \n Numero de Emergencias \n $fila2[6] \n Restricciones \n $fila2[9] ",0,'R');
-		$pdf->Output($config['temp']. 'licencia'.$folio.'.pdf','F');
+		$ruta=$config['temp']."licencias/";
+		$pdf->Output($ruta. 'licencia'.$folio.'.pdf','F');
 		//FIN: Creación de PDF
 
 		echo("<div class='alert alert-success' role='alert'>Licencia agregada</div>");

@@ -127,9 +127,9 @@ $parametros = parse_ini_file("../credenciales.ini");
 	            odbc_exec($conexionRControl,$sql);
 
 		// $query = ejecutarConsulta($con, $sql);
-		if($query){
+		if(odbc_num_rows($query)>0){
 			
-			$config = parse_ini_file("../configuracion.ini");
+            $config = parse_ini_file("../configuracion.ini");
 			@ $xml = simplexml_load_file($config['temp'] . 'db.xml');
 			
 			$vehiculos = $xml->vehiculos;
@@ -149,8 +149,7 @@ $parametros = parse_ini_file("../credenciales.ini");
 					break;
 				}
 			}
-			
-			$xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp']. 'db.xml');
 
             $sql2 = "Select * from vehiculos WHERE idVehiculo = '$idVehiculo';";
             $Query2 = EjecutarConsulta($con, $sql2);
@@ -162,7 +161,7 @@ $parametros = parse_ini_file("../credenciales.ini");
             require "../phpqrcode/qrlib.php";
 
             $qrData = "Id: $idVehiculo Propietario: $propietario NIV: $NIV";
-            $filename = $config['temp']."QRvehiculo" . $idVehiculo . ".png";
+            $filename = $config['temp']."vehiculos/"."QRvehiculo" . $idVehiculo . ".png";
 
             QRCode::png($qrData, $filename, "L");
 
@@ -175,7 +174,8 @@ $parametros = parse_ini_file("../credenciales.ini");
             $sql = "Select * from propietarios WHERE RFC = '$propietario';";
             $Query = EjecutarConsulta($con, $sql);
             $fila = mysqli_fetch_row($Query);
-            $pdfname = $config['temp']."vehiculo". $idVehiculo . ".pdf";
+            $ruta =$config['temp']."vehiculos/";
+            $pdfname = $ruta."vehiculo". $idVehiculo . ".pdf";
 
             $pdf = new FPDF();
             $pdf -> AddPage();
@@ -369,8 +369,8 @@ $parametros = parse_ini_file("../credenciales.ini");
             $pdf->SetFont('Arial','',9);
             $pdf->Cell(22,6,$placa,0,0,'L');
 
-
-            $pdf->Output($config['temp'] . $pdfname, 'F');
+            $ruta =$config['temp']."vehiculos/";
+            $pdf->Output($ruta . $pdfname, 'F');
             ob_end_flush();
 
 

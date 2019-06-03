@@ -29,7 +29,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item ">
-          <a class="nav-link active" href="../licencias/Plicencia.php">Licencias <span class="sr-only">(current)</span></a>
+          <a class="nav-link " href="../licencias/Plicencia.php">Licencias <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../multas/Pmulta.php">Multas</a>
@@ -48,7 +48,7 @@
             <a class="dropdown-item" href="../vehiculos/Uvehiculo.php">Modificaciones</a>
           </div>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown active">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             Conductores
@@ -110,12 +110,6 @@
   	</div>
   	<input type="text" name="antiguedad" class="form-control" id="antiguedad" aria-label="antiguedad" aria-describedby="basic-addon1">
 	</div>
-	<div class="input-group mb-3">
-  	<div class="input-group-prepend">
-    	<span class="input-group-text" id="basic-addon1">Antiguedad</span>
-  	</div>
-  	<input type="text" name="antiguedad" class="form-control" id="antiguedad" aria-label="antiguedad" aria-describedby="basic-addon1">
-	</div>
 	<!-- <label>Sexo</label> -->
 	<div class="input-group mb-3">
   	<div class="input-group-prepend">
@@ -155,13 +149,13 @@
   	<div class="input-group-prepend">
     	<span class="input-group-text" id="basic-addon1">Firma</span>
   	</div>
-  	<input type="file" name="firma" class="form-control" id="firma" aria-label="firma" aria-describedby="basic-addon1" accept="image/jpg">
+  	<input type="file" name="firma" class="form-control" id="firma" aria-label="firma" aria-describedby="basic-addon1" accept="image/*">
 	</div>
   	<div class="input-group mb-3">
   	<div class="input-group-prepend">
     	<span class="input-group-text" id="basic-addon1">Foto</span>
   	</div>
-  	<input type="file" name="foto" class="form-control" id="foto" aria-label="foto" aria-describedby="basic-addon1" accept="image/jpg">
+  	<input type="file" name="foto" class="form-control" id="foto" aria-label="foto" aria-describedby="basic-addon1" accept="image/*">
 	</div>
   <p>
     <label>

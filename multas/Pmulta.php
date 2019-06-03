@@ -105,8 +105,8 @@
 	$query = ejecutarConsulta($con, $sql);
 
 
-	// $status = mysqli_affected_rows($con);
-	if($query){
+	$status = mysqli_affected_rows($con);
+	if($status>0){
 		$folio = mysqli_insert_id($con);
 		$config = parse_ini_file("../configuracion.ini");
 		@ $xml = simplexml_load_file($config['temp'] . 'db.xml');
@@ -131,7 +131,6 @@
 			$multa->addChild('descripcion', $descripcion);
 			$multa->addChild('garantia', $garantia);
 	
-	
 			$xml->asXML($config['temp'] . 'db.xml');
 	
 		
@@ -150,8 +149,8 @@
 			$multa->addChild('monto', $monto);
 			$multa->addChild('descripcion', $descripcion);
 			$multa->addChild('garantia', $garantia);		
-	
-			$xml->asXML($config['temp'] . 'db.xml');
+
+			$xml->asXML($config['temp']. 'db.xml');
 		} else {
 	
 			//Sí existe el archivo xml pero no existe la sección de multas.
@@ -169,12 +168,11 @@
 			$multa->addChild('monto', $monto);
 			$multa->addChild('descripcion', $descripcion);
 			$multa->addChild('garantia', $garantia);
-	
-			$xml->asXML($config['temp'] . 'db.xml');
+			$xml->asXML($config['temp']. 'db.xml');
 		}
 
 		require('../barcode.php');
-		$filepath="barras". $folio .".png";
+		$filepath=$config['temp']."multas/"."barras". $folio .".png";
 		$text="folio";
 		$size=40;
 		$orientation="horizontal";
@@ -261,8 +259,8 @@
 		$pdf->Image($filepath,160,100,0,0,'PNG');
 
 
-		
-		$pdf->Output($config['temp'].'multa'.$folio.'.pdf','F');
+		$ruta =$config['temp']."multas/";
+		$pdf->Output($ruta.'multa'.$folio.'.pdf','F');
 		echo("<div class='alert alert-success' role='alert'>Multa agregada</div>");
 	} else {
 		echo ("<div class='alert alert-danger' role='alert'>Error: no se pudó agregar</div>");

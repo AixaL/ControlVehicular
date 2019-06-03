@@ -93,9 +93,9 @@ if(isset($_POST['submit'])){
 	$con = conectar();
 
 	$sql = "INSERT INTO verificaciones(Vehiculo, Periodo, CentroVerificacion, Tipo, Dictamen) VALUES ('$vehiculo', '$periodo', '$centroVerificador', '$tipo', '$dictamen');";
-
 	$query = ejecutarConsulta($con, $sql);
-	if($query){
+	$status = mysqli_affected_rows($con);
+	if($status>0){
 		$idVerificacion = mysqli_insert_id($con);
 		$config = parse_ini_file("../configuracion.ini");
 		@ $xml = simplexml_load_file($config['temp'] . 'db.xml');
@@ -153,7 +153,7 @@ if(isset($_POST['submit'])){
 		require "../phpqrcode/qrlib.php";
 
 		$qrData = "Id verificacion: $idVerificacion Vehiculo: $vehiculo Periodo: $periodo Tipo: $tipo Centro: $centroVerificador Dictamen: $dictamen";
-		$filename = $config['temp']."QRverificacion" . $idVerificacion . ".png";
+		$filename = $config['temp']."verificaciones/"."QRverificacion" . $idVerificacion . ".png";
 
 		QRCode::png($qrData, $filename, "L");
 
@@ -277,7 +277,8 @@ if(isset($_POST['submit'])){
 		$pdf->Cell(50,6,$tipo,0,0,'L');
 		$pdf->SetXY(45,103);
 		$pdf->Cell(50,6,$dictamen,0,0,'L');
-		$pdf->Output($config['temp'].$pdfname, 'F');
+		$ruta=$config['temp']."verificaciones/";
+		$pdf->Output($ruta.$pdfname, 'F');
 		ob_end_flush();
 	
 		
